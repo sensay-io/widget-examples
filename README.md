@@ -22,7 +22,6 @@ This Turborepo includes the following packages/apps:
 
 - `nextjs`: a [Next.js](https://nextjs.org/) app demonstrating AI chatbot integration
 
-
 ### Utilities
 
 This Turborepo has some additional tools already setup for you:

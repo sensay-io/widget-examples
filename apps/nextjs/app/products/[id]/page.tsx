@@ -31,16 +31,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col items-center gap-2">
-        <div className="h-[60vh] w-full relative rounded-lg overflow-hidden">
-          <Image
-            src={getImage(product.id)}
-            alt={product.name}
-            fill
-            className="object-cover"
-          />
-          
-        </div>
-        <ImageCredits />
+          <div className="h-[60vh] w-full relative rounded-lg overflow-hidden">
+            <Image
+              src={getImage(product.id)}
+              alt={product.name}
+              fill
+              className="object-cover"
+            />
+          </div>
+          <ImageCredits />
         </div>
 
         <div className="p-4 flex flex-col gap-6">

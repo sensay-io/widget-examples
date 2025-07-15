@@ -82,5 +82,5 @@ export const ARTICLES = [
   },
 ];
 
-export type Article = (typeof ARTICLES)[number]
-export type Faq = (typeof FAQS)[number]
+export type Article = (typeof ARTICLES)[number];
+export type Faq = (typeof FAQS)[number];
