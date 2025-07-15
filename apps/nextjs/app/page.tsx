@@ -1,93 +1,124 @@
-import Image, { type ImageProps } from "next/image";
-
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
-
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
+import Link from "next/link";
+import Card from "../components/Card";
+import CodeExample from "../components/CodeExample";
+import Section from "../components/Section";
 
 export default function Home() {
   return (
-    <div>
-      <main>
-        <ThemeImage
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="flex flex-col gap-6 py-8">
+      {/* Header */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Section
+          title="AI chatbot integration with Next.js"
+          description="Three ways to add external widget scripts to your Next.js application using the Script component."
+        >
+          <ul className="flex flex-col gap-0 list-disc list-inside">
+            <li>
+              <Link className="underline" href="#root-layout-example">
+                Root Layout
+              </Link>
+            </li>
+            <li>
+              <Link className="underline" href="#layout-example">
+                Layout
+              </Link>
+            </li>
+            <li>
+              <Link className="underline" href="#page-example">
+                Page
+              </Link>
+            </li>
+          </ul>
+        </Section>
 
         <div>
-          <a
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Card
+            id="examples"
+            title="See examples in action"
+            description="Visit example pages with integrated chatbot"
+            className="shadow-none"
           >
-            <Image
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.com/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Link
+                href="/products"
+                className="text-sm border border-gray-200 px-3 py-2 rounded-md text-center hover:bg-gray-100 transition-colors duration-200"
+              >
+                Layout example
+              </Link>
+              <Link
+                href="/support"
+                className="text-sm border border-gray-200 px-3 py-2 rounded-md text-center hover:bg-gray-100 transition-colors duration-200"
+              >
+                Page example
+              </Link>
+            </div>
+          </Card>
         </div>
-      </main>
-      <footer>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </div>
+
+      <div className="grid grid-cols-1 gap-6">
+        <Card
+          id="root-layout-example"
+          title="Add to root layout"
+          description="Add the widget script to your root layout for global availability across all pages."
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.com?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
+          <CodeExample filePath="app/layout.tsx">{`import Script from 'next/script'
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        {children}
+        <Script
+          src="https://chat-widget.sensay.io/<chatbot-identifier>/embed-script.js"
+          strategy="afterInteractive"
+        />
+      </body>
+    </html>
+  )
+}`}</CodeExample>
+        </Card>
+
+        <Card
+          id="layout-example"
+          title="Add to Layout (Part of App)"
+          description="Add the widget script to a specific layout for part of your application."
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.com →
-        </a>
-      </footer>
+          <CodeExample filePath="app/products/layout.tsx">{`import Script from 'next/script'
+
+export default function ProductsLayout({ children }) {
+  return (
+    <div>
+      {children}
+      <Script
+          src="https://chat-widget.sensay.io/<chatbot-identifier>/embed-script.js"
+          strategy="afterInteractive"
+        />
+    </div>
+  )
+}`}</CodeExample>
+        </Card>
+
+        <Card
+          id="page-example"
+          title="Add to Page (Page-specific)"
+          description="Add the widget script to a specific page component for page-specific functionality."
+        >
+          <CodeExample filePath="app/support/page.tsx">{`import Script from 'next/script'
+
+export default function SupportPage() {
+  return (
+    <div>
+      <h1>Support Page</h1>
+      <Script
+          src="https://chat-widget.sensay.io/<chatbot-identifier>/embed-script.js"
+          strategy="afterInteractive"
+        />
+    </div>
+  )
+}`}</CodeExample>
+        </Card>
+      </div>
     </div>
   );
 }
