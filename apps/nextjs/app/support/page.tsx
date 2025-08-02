@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Section from "../../components/Section";
-import Card from "../../components/Card";
+import Card from "@/components/Card";
+import PageCodeExample from "@/components/PageCodeExample";
+import Section from "@/components/Section";
+import SensayScript from "@/components/SensayScript";
 import { getImage } from "../products/data";
-import { Article, ARTICLES, Faq, FAQS } from "./data";
-import Script from "next/script";
-import CodeExample from "../../components/CodeExample";
+import { type Article, type Faq, ARTICLES, FAQS } from "./data";
 
 const CategoryBadge = ({ category }: { category: string }) => (
   <span className="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
@@ -54,10 +54,7 @@ const FaqCard = ({ faq }: { faq: Faq }) => (
 export default function CustomerServicePage() {
   return (
     <>
-      <Script
-        src="https://chat-widget.sensay.io/373a2499-c31b-42e4-a7a7-47feada5c7fa/embed-script.js"
-        strategy="afterInteractive"
-      />
+      <SensayScript src="https://chat-widget.sensay.io/373a2499-c31b-42e4-a7a7-47feada5c7fa/embed-script.js" />
       <div className="flex flex-col gap-20 py-8">
         <Section
           title="Customer Support Center"
@@ -123,19 +120,7 @@ export default function CustomerServicePage() {
           description="Add the widget script to a specific page component for page-specific functionality."
           className="border-t border-gray-200 pt-10"
         >
-          <CodeExample filePath="app/support/page.tsx">{`import Script from 'next/script'
-
-export default function SupportPage() {
-  return (
-    <div>
-      <h1>Support Page</h1>
-      <Script
-          src="https://chat-widget.sensay.io/<chatbot-identifier>/embed-script.js"
-          strategy="afterInteractive"
-        />
-    </div>
-  )
-}`}</CodeExample>
+          <PageCodeExample />
         </Section>
       </div>
     </>
