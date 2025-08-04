@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getImage, getProduct } from "../data";
 import Image from "next/image";
-import ImageCredits from "../../../components/ImageCredits";
+import ImageCredits from "@/components/ImageCredits";
+import { getImage, getProduct } from "../data";
 
 interface ProductPageProps {
   params: Promise<{

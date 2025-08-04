@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Section from "../../components/Section";
-import { LinkButton } from "../../components/LinkButton";
+import ImageCredits from "@/components/ImageCredits";
+import { LinkButton } from "@/components/LinkButton";
+import Section from "@/components/Section";
 import { getImage, PRODUCTS } from "./data";
-import ImageCredits from "../../components/ImageCredits";
 
 export default function ProductsPage() {
   return (

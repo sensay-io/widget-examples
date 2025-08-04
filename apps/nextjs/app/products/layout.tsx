@@ -1,6 +1,6 @@
-import Script from "next/script";
-import Section from "../../components/Section";
-import CodeExample from "../../components/CodeExample";
+import Section from "@/components/Section";
+import LayoutCodeExample from "@/components/LayoutCodeExample";
+import SensayScript from "@/components/SensayScript";
 
 export default function ProductsLayout({
   children,
@@ -14,23 +14,10 @@ export default function ProductsLayout({
         title="Layout example"
         description="Add the widget script to your layout for multiple pages."
       >
-        <CodeExample filePath="app/products/layout.tsx">{`import Script from "next/script";
-
-export default function ProductsLayout({ children }) {
-  return (
-    <div>
-        {children}
-        <Script src="https://chat-widget.sensay.io/<chatbot-identifier>/embed-script.js" strategy="afterInteractive"/>
-    </div>
-  );
-}
-`}</CodeExample>
+        <LayoutCodeExample />
       </Section>
 
-      <Script
-        src="https://chat-widget.sensay.io/69c8b146-9542-4596-a632-a1ce41d5407e/embed-script.js"
-        strategy="afterInteractive"
-      />
+      <SensayScript src="https://chat-widget.sensay.io/69c8b146-9542-4596-a632-a1ce41d5407e/embed-script.js" />
     </div>
   );
 }
